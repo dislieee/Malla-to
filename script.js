@@ -18,7 +18,7 @@ const ramos = [
   { codigo: "PST", nombre: "Psicología Social y del Trabajo", anio: 2, semestre: 3, prereqs: ["PGE"] },
   { codigo: "ANT", nombre: "Antropología", anio: 2, semestre: 3, prereqs: ["PGE"] },
   { codigo: "MORF2", nombre: "Morfología II: Anatomía, Fisiología y Embriología", anio: 2, semestre: 3, prereqs: ["MORF1"] },
-  { codigo: "FISGEN", nombre: "Fisiología General", anio: 2, semestre: 3, prereqs: ["BCG", "PGE"] },
+  { codigo: "FISGEN", nombre: "Fisiología General", anio: 2, semestre: 3, prereqs: ["BCG"] },
   { codigo: "MPEO", nombre: "Modelos Pragmáticos del Estudio de la Ocupación", anio: 2, semestre: 3, prereqs: ["FEC"] },
   { codigo: "TOEI3", nombre: "Terapia Ocupacional y Estrategias de Intervención III", anio: 2, semestre: 3, prereqs: ["TOEI2"] },
 
@@ -46,10 +46,93 @@ const ramos = [
   { codigo: "ICTO3", nombre: "Investigación en Ciencia de la Ocupación y Terapia Ocupacional III", anio: 4, semestre: 7, prereqs: ["ICTO2"] },
   { codigo: "TOEI7", nombre: "Terapia Ocupacional y Estrategias de Intervención VII", anio: 4, semestre: 7, prereqs: ["TOEI6"] },
   { codigo: "PI2", nombre: "Práctica Integrada II: En Educación/Trabajo", anio: 4, semestre: 7, prereqs: ["PI1"] },
-  { codigo: "OCR", nombre: "Ocupación y Redes", anio: 4, semestre: 7, prereqs: [] },
-  { codigo: "OCC", nombre: "Ocupación y Cultura", anio: 4, semestre: 7, prereqs: [] },
-  { codigo: "HPO", nombre: "Historias y Perfiles Ocupacionales", anio: 4, semestre: 7, prereqs: [] },
+  { codigo: "GATOS", nombre: "Gestión Aplicada a la Salud", anio: 4, semestre: 7, prereqs: ["GATO"] },
 
   { codigo: "ICTO4", nombre: "Investigación en Ciencia de la Ocupación y Terapia Ocupacional IV", anio: 4, semestre: 8, prereqs: ["ICTO3"] },
-  { codigo: "TOEI8", nombre: "Terapia Ocupacional y Estrategias de Intervención VIII",
+  { codigo: "TOEI8", nombre: "Terapia Ocupacional y Estrategias de Intervención VIII", anio: 4, semestre: 8, prereqs: ["TOEI7"] },
+  { codigo: "PI3", nombre: "Práctica Integrada III: En Salud", anio: 4, semestre: 8, prereqs: ["PI2"] },
+  { codigo: "SEM", nombre: "Seminario de Titulación", anio: 4, semestre: 8, prereqs: ["ICTO4"] },
+
+  // Quinto Año
+  { codigo: "PI4", nombre: "Práctica Profesional Supervisada", anio: 5, semestre: 9, prereqs: ["PI3"] },
+  { codigo: "TESIS", nombre: "Tesis", anio: 5, semestre: 9, prereqs: ["SEM"] },
+  { codigo: "TOEIC", nombre: "Terapia Ocupacional en Equipos Interdisciplinarios y Comunitarios", anio: 5, semestre: 9, prereqs: ["TOEI8"] },
+
+  { codigo: "PI5", nombre: "Práctica Profesional Supervisada II", anio: 5, semestre: 10, prereqs: ["PI4"] },
+  { codigo: "TESIS2", nombre: "Tesis II", anio: 5, semestre: 10, prereqs: ["TESIS"] },
+  { codigo: "TOEIC2", nombre: "Terapia Ocupacional en Intervenciones Avanzadas", anio: 5, semestre: 10, prereqs: ["TOEIC"] },
+];
+
+// Variables para controlar estado de aprobados
+let ramosAprobados = new Set();
+
+// Función para crear el HTML de la malla curricular
+function crearMalla() {
+  const mallaDiv = document.getElementById("malla");
+  mallaDiv.innerHTML = "";
+
+  // Agrupar por año
+  for (let anio = 1; anio <= 5; anio++) {
+    const anioDiv = document.createElement("div");
+    anioDiv.classList.add("anio");
+
+    const anioTitulo = document.createElement("div");
+    anioTitulo.classList.add("anio-titulo");
+    anioTitulo.textContent = `Año ${anio}`;
+    anioDiv.appendChild(anioTitulo);
+
+    // Agrupar por semestre dentro del año
+    const semestresDiv = document.createElement("div");
+    semestresDiv.classList.add("semestres");
+
+    for (let semestre = 1; semestre <= 2; semestre++) {
+      const semestreDiv = document.createElement("div");
+      semestreDiv.classList.add("semestre");
+
+      const semestreTitulo = document.createElement("h2");
+      semestreTitulo.textContent = `Semestre ${semestre}`;
+      semestreDiv.appendChild(semestreTitulo);
+
+      // Filtrar ramos de ese año y semestre
+      const ramosFiltrados = ramos.filter(r => r.anio === anio && r.semestre === semestre);
+
+      ramosFiltrados.forEach(ramo => {
+        const ramoDiv = document.createElement("div");
+        ramoDiv.classList.add("ramo");
+        ramoDiv.textContent = `${ramo.codigo} - ${ramo.nombre}`;
+
+        // Verificar si puede desbloquearse (todos los prereqs aprobados)
+        const puedeTomar = ramo.prereqs.every(pr => ramosAprobados.has(pr));
+
+        if (ramosAprobados.has(ramo.codigo)) {
+          ramoDiv.classList.add("aprobado");
+        } else if (!puedeTomar) {
+          ramoDiv.classList.add("bloqueado");
+        }
+
+        // Click para marcar/aprobar ramo solo si está desbloqueado
+        ramoDiv.addEventListener("click", () => {
+          if (ramoDiv.classList.contains("bloqueado")) return;
+
+          if (ramosAprobados.has(ramo.codigo)) {
+            ramosAprobados.delete(ramo.codigo);
+          } else {
+            ramosAprobados.add(ramo.codigo);
+          }
+          crearMalla();
+        });
+
+        semestreDiv.appendChild(ramoDiv);
+      });
+
+      semestresDiv.appendChild(semestreDiv);
+    }
+
+    anioDiv.appendChild(semestresDiv);
+    mallaDiv.appendChild(anioDiv);
+  }
+}
+
+// Inicializar la malla
+crearMalla();
 
