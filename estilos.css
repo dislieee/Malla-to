@@ -1,96 +1,96 @@
 body {
-  background-color: #e6d7ff; /* morado claro */
+  margin: 0;
   font-family: Arial, sans-serif;
-  margin: 20px;
-  color: #3a0066;
-  overflow-x: hidden;
+  background-color: #f6f0ff;
+  color: #4b2e83;
+  user-select: none;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
+  padding: 20px 0;
+  background-color: #9b7aff;
+  color: white;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 1.5px;
 }
 
-/* Contenedor con scroll horizontal */
 #malla {
   display: flex;
-  flex-wrap: nowrap;  /* NO saltar línea */
-  gap: 20px;
-  overflow-x: auto;  /* scroll horizontal */
-  padding: 10px;
-  border: 2px solid #b399ff;
-  background: #f5f0ff;
-  border-radius: 10px;
-  height: 420px;
-  max-width: 100vw;
+  overflow-x: auto;
+  padding: 15px;
+  gap: 15px;
+  height: auto;
   box-sizing: border-box;
 }
 
-/* Cada semestre es columna fija */
 .semestre {
-  flex: 0 0 260px; /* ancho fijo */
+  flex: 0 0 260px;
   background-color: #d1b3ff;
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 0 6px #9b7aff;
   display: flex;
   flex-direction: column;
-  max-height: 100%;
-  overflow-y: auto;
-  white-space: normal;
+  height: auto; /* permite crecer con ramos */
+  max-height: none; /* elimina límite */
+  overflow-y: visible; /* no scroll vertical */
   box-sizing: border-box;
 }
 
-/* Título semestre */
 .semestre-title {
-  font-weight: bold;
-  font-size: 18px;
+  font-weight: 700;
+  font-size: 1.1em;
   margin-bottom: 12px;
   text-align: center;
-  color: #3a0066;
-  border-bottom: 2px solid #b399ff;
-  padding-bottom: 6px;
+  color: #5a3cae;
+  border-bottom: 2px solid #9b7aff;
+  padding-bottom: 5px;
 }
 
-/* Botón ramo */
 .ramo {
-  background-color: #b399ff;
-  border-radius: 5px;
-  margin-bottom: 8px;
-  padding: 8px 10px;
-  cursor: pointer;
-  color: white;
-  user-select: none;
-  box-shadow: 0 0 4px #7a4cff;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  font-size: 14px;
+  background-color: #b39ddb;
   border: none;
-  text-align: left;
+  border-radius: 6px;
+  padding: 10px 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 0.9em;
+  color: #3b2370;
+  box-shadow: inset 0 0 3px #7a4fca;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: normal;
+  text-align: center;
+  user-select: none;
+  position: relative;
 }
 
-.ramo:hover {
-  background-color: #8a2eff;
-  box-shadow: 0 0 8px #6a0dad;
-}
-
-.ramo.approved {
-  background-color: #4b0099;
-  box-shadow: 0 0 10px #330066;
+.ramo:hover:not(.locked):not(.approved) {
+  background-color: #9575cd;
+  color: white;
 }
 
 .ramo.locked {
-  background-color: #bbb;
-  color: #666;
+  background-color: #ccc;
+  color: #888;
   cursor: not-allowed;
   box-shadow: none;
 }
 
-/* Info debajo de cada ramo */
-.ramo-info {
-  font-size: 10px;
-  margin-top: 3px;
-  opacity: 0.75;
-  color: #220066;
+.ramo.approved {
+  background-color: #7e57c2;
+  color: white;
+  box-shadow: 0 0 10px #6a3bc7;
 }
 
+.ramo:focus {
+  outline: 2px solid #5c3aa3;
+  outline-offset: 2px;
+}
+
+/* Eliminamos ramo-info porque no la usamos */
+.ramo-info {
+  display: none;
+}
 
