@@ -207,8 +207,8 @@ const data = [
           },
           {
             nombre: "Gestión Aplicada a Terapia Ocupacional",
-            abre: [],
-            requiere: ["Gestión en Salud II"]
+            requiere: ["Gestión en Salud II"],
+            abre: []
           }
         ]
       }
@@ -232,23 +232,23 @@ const data = [
           },
           {
             nombre: "Práctica Integrada II: En Educación/Trabajo",
-            abre: [],
-            requiere: ["Práctica Integrada I"]
+            requiere: ["Práctica Integrada I"],
+            abre: []
           },
           {
             nombre: "Ocupación y Redes",
-            abre: [],
-            requiere: []
+            requiere: [],
+            abre: []
           },
           {
             nombre: "Ocupación y Cultura",
-            abre: [],
-            requiere: []
+            requiere: [],
+            abre: []
           },
           {
             nombre: "Historias y Perfiles Ocupacionales",
-            abre: [],
-            requiere: []
+            requiere: [],
+            abre: []
           }
         ]
       },
@@ -257,33 +257,33 @@ const data = [
         ramos: [
           {
             nombre: "Investigación en Ciencia de la Ocupación y Terapia Ocupacional IV",
-            abre: [],
-            requiere: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional III"]
+            requiere: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional III"],
+            abre: []
           },
           {
             nombre: "Terapia Ocupacional y Estrategias de Intervención VIII",
-            abre: [],
-            requiere: ["Terapia Ocupacional y Estrategias de Intervención VII"]
+            requiere: ["Terapia Ocupacional y Estrategias de Intervención VII"],
+            abre: []
           },
           {
             nombre: "Práctica Integrada III: En Desarrollo Social/Justicia",
-            abre: [],
-            requiere: ["Práctica Integrada II"]
+            requiere: ["Práctica Integrada II"],
+            abre: []
           },
           {
             nombre: "Análisis Ocupacionales Avanzados",
-            abre: [],
-            requiere: []
+            requiere: [],
+            abre: []
           },
           {
             nombre: "FG: GRIPS",
-            abre: [],
-            requiere: []
+            requiere: [],
+            abre: []
           },
           {
             nombre: "Práctica Profesional I",
-            abre: [],
-            requiere: ["Práctica Integrada III"]
+            requiere: ["Práctica Integrada III"],
+            abre: []
           }
         ]
       }
@@ -297,13 +297,13 @@ const data = [
         ramos: [
           {
             nombre: "Práctica Profesional II",
-            abre: [],
-            requiere: ["Práctica Profesional I"]
+            requiere: ["Práctica Profesional I"],
+            abre: []
           },
           {
             nombre: "Práctica Profesional III",
-            abre: [],
-            requiere: ["Práctica Profesional II"]
+            requiere: ["Práctica Profesional II"],
+            abre: []
           }
         ]
       },
@@ -312,8 +312,8 @@ const data = [
         ramos: [
           {
             nombre: "Proyecto de Titulación",
-            abre: [],
-            requiere: ["Práctica Profesional III"]
+            requiere: ["Práctica Profesional III"],
+            abre: []
           }
         ]
       }
@@ -321,132 +321,119 @@ const data = [
   }
 ];
 
-// Estado de aprobados
-let aprobados = new Set();
-
-// Para encontrar el ramo por nombre en toda la data
-function buscarRamo(nombre) {
-  for (const ano of data) {
-    for (const semestre of ano.semestres) {
-      for (const ramo of semestre.ramos) {
-        if (ramo.nombre === nombre) return ramo;
-      }
-    }
-  }
-  return null;
-}
-
-// Comprobar si un ramo está desbloqueado (todos sus requisitos aprobados)
-function estaDesbloqueado(ramo) {
-  return ramo.requiere.every(req => aprobados.has(req));
-}
-
-// Actualiza el estado de todos los ramos bloqueados o desbloqueados
-function actualizarEstados() {
-  const elementos = document.querySelectorAll(".ramo");
-  elementos.forEach(el => {
-    const nombre = el.dataset.nombre;
-    const ramo = buscarRamo(nombre);
-    if (aprobados.has(nombre)) {
-      el.classList.add("approved");
-      el.classList.remove("locked");
-      el.style.pointerEvents = "auto";
-    } else if (estaDesbloqueado(ramo)) {
-      el.classList.remove("locked");
-      el.style.pointerEvents = "auto";
-      el.classList.remove("approved");
-    } else {
-      el.classList.add("locked");
-      el.style.pointerEvents = "none";
-      el.classList.remove("approved");
-    }
+// Diccionario para encontrar ramos por nombre rápido
+const ramoMap = new Map();
+data.forEach(ano => {
+  ano.semestres.forEach(semestre => {
+    semestre.ramos.forEach(ramo => {
+      ramoMap.set(ramo.nombre, ramo);
+    });
   });
+});
+
+const aprobados = new Set(
+  JSON.parse(localStorage.getItem("aprobados") || "[]")
+);
+
+const mallaDiv = document.getElementById("malla");
+
+function crearRamoElement(ramo) {
+  const div = document.createElement("div");
+  div.classList.add("ramo");
+
+  // Si no tiene los requisitos aprobados, está bloqueado
+  const bloqueado = !ramo.requiere.every(req => aprobados.has(req));
+  if (bloqueado) {
+    div.classList.add("locked");
+  }
+
+  if (aprobados.has(ramo.nombre)) {
+    div.classList.add("approved");
+  }
+
+  div.innerHTML = `
+    <div class="ramo-title">${ramo.nombre}</div>
+    <div class="ramo-info">
+      <b>Requiere:</b> ${ramo.requiere.length ? ramo.requiere.join(", ") : "Ninguno"}<br/>
+      <b>Abre:</b> ${ramo.abre.length ? ramo.abre.join(", ") : "Ninguno"}
+    </div>
+  `;
+
+  if (!bloqueado) {
+    div.addEventListener("click", () => {
+      if (aprobados.has(ramo.nombre)) {
+        // Desaprobar: quitar
+        desaprobarRamo(ramo.nombre);
+      } else {
+        // Aprobar: añadir
+        aprobarRamo(ramo.nombre);
+      }
+      actualizarVista();
+      guardarEstado();
+    });
+  }
+
+  return div;
 }
 
-// Guardar el estado en localStorage
-function guardarEstado() {
-  localStorage.setItem("aprobados", JSON.stringify([...aprobados]));
+function aprobarRamo(nombre) {
+  aprobados.add(nombre);
 }
 
-// Cargar el estado de localStorage
-function cargarEstado() {
-  const datos = localStorage.getItem("aprobados");
-  if (datos) {
-    aprobados = new Set(JSON.parse(datos));
+function desaprobarRamo(nombre) {
+  aprobados.delete(nombre);
+
+  // También desaprobar todos los ramos que dependan directa o indirectamente
+  // Ej: si ramo A es requisito de B, y B está aprobado, desaprobar B también
+  for (const [ramoNombre, ramo] of ramoMap.entries()) {
+    if (ramo.requiere.includes(nombre) && aprobados.has(ramoNombre)) {
+      desaprobarRamo(ramoNombre);
+    }
   }
 }
 
-// Renderizar la malla curricular
-function renderizarMalla() {
-  const contenedor = document.getElementById("malla");
-  contenedor.innerHTML = "";
+function actualizarVista() {
+  mallaDiv.innerHTML = "";
 
   data.forEach(ano => {
-    const divAno = document.createElement("div");
-    divAno.classList.add("ano");
+    const anoDiv = document.createElement("div");
+    anoDiv.classList.add("ano");
 
-    const tituloAno = document.createElement("h2");
+    const tituloAno = document.createElement("div");
     tituloAno.classList.add("ano-title");
     tituloAno.textContent = ano.ano;
-    divAno.appendChild(tituloAno);
+    anoDiv.appendChild(tituloAno);
+
+    const semestresDiv = document.createElement("div");
+    semestresDiv.classList.add("semestres");
 
     ano.semestres.forEach(semestre => {
-      const divSem = document.createElement("div");
-      divSem.classList.add("semestre");
+      const semestreDiv = document.createElement("div");
+      semestreDiv.classList.add("semestre");
 
-      const tituloSem = document.createElement("div");
-      tituloSem.classList.add("semestre-title");
-      tituloSem.textContent = semestre.nombre;
-      divSem.appendChild(tituloSem);
+      const tituloSemestre = document.createElement("div");
+      tituloSemestre.classList.add("semestre-title");
+      tituloSemestre.textContent = semestre.nombre;
+      semestreDiv.appendChild(tituloSemestre);
 
       semestre.ramos.forEach(ramo => {
-        const divRamo = document.createElement("div");
-        divRamo.classList.add("ramo");
-        divRamo.dataset.nombre = ramo.nombre;
-
-        const tituloRamo = document.createElement("div");
-        tituloRamo.classList.add("ramo-title");
-        tituloRamo.textContent = ramo.nombre;
-        divRamo.appendChild(tituloRamo);
-
-        // Info: abre y requiere
-        const infoRamo = document.createElement("div");
-        infoRamo.classList.add("ramo-info");
-        let infoText = "";
-        if (ramo.requiere.length > 0) {
-          infoText += "Requiere: " + ramo.requiere.join(", ") + ". ";
-        }
-        if (ramo.abre.length > 0) {
-          infoText += "Abre: " + ramo.abre.join(", ") + ".";
-        }
-        infoRamo.textContent = infoText;
-        divRamo.appendChild(infoRamo);
-
-        divRamo.addEventListener("click", () => {
-          if (divRamo.classList.contains("locked")) return;
-
-          if (aprobados.has(ramo.nombre)) {
-            aprobados.delete(ramo.nombre);
-          } else {
-            aprobados.add(ramo.nombre);
-          }
-          actualizarEstados();
-          guardarEstado();
-        });
-
-        divSem.appendChild(divRamo);
+        const ramoEl = crearRamoElement(ramo);
+        semestreDiv.appendChild(ramoEl);
       });
 
-      divAno.appendChild(divSem);
+      semestresDiv.appendChild(semestreDiv);
     });
 
-    contenedor.appendChild(divAno);
+    anoDiv.appendChild(semestresDiv);
+    mallaDiv.appendChild(anoDiv);
   });
-
-  actualizarEstados();
 }
 
-cargarEstado();
-renderizarMalla();
+function guardarEstado() {
+  localStorage.setItem("aprobados", JSON.stringify(Array.from(aprobados)));
+}
+
+// Inicialización
+actualizarVista();
 
 
