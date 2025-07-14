@@ -115,6 +115,34 @@ function generarMalla() {
           divRamo.classList.add("aprobado");
           desbloquearRamos(ramo.codigo);
         };
+        contSemestre.appendChild(divRamo);
+      });
 
+      contAnio.appendChild(contSemestre);
+    });
 
+    malla.appendChild(contAnio);
+  }
+}
+
+// Función que desbloquea ramos que tengan como requisito el ramo aprobado
+function desbloquearRamos(codigoAprobado) {
+  ramos.forEach((ramo) => {
+    if (ramo.prereqs.includes(codigoAprobado)) {
+      // Comprobar si ya están aprobados todos los prereqs para desbloquear
+      const todosAprobados = ramo.prereqs.every(pr => {
+        const elem = document.getElementById(pr);
+        return elem && elem.classList.contains("aprobado");
+      });
+      if (todosAprobados) {
+        const elem = document.getElementById(ramo.codigo);
+        if (elem && elem.classList.contains("bloqueado")) {
+          elem.classList.remove("bloqueado");
+        }
+      }
+    }
+  });
+}
+
+window.onload = generarMalla;
 
