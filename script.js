@@ -1,180 +1,199 @@
+// Datos: semestres con ramos y sus prerequisitos y cursos que desbloquean
 const semestres = [
   {
     nombre: "I Semestre",
     ramos: [
-      { nombre: "Fundamentos Psicológicos y Socioculturales de la Intervención", abre: ["Psicología General y Evolutiva"], requiere: [] },
-      { nombre: "Biología Celular y Genética", abre: ["Bioquímica", "Morfología I: Anatomía, Histología y Embriología", "Fisiología General"], requiere: [] },
-      { nombre: "Química General y Orgánica", abre: ["Bioquímica"], requiere: [] },
-      { nombre: "Introducción a la Terapia Ocupacional", abre: ["Fundamentos y Epistemología de la Ciencia de la Ocupación"], requiere: [] },
-      { nombre: "Electivo Formación General", abre: [], requiere: [] },
-      { nombre: "Matemáticas", abre: [], requiere: [] },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención I", abre: ["Terapia Ocupacional y Estrategias de Intervención II", "Práctica Integrada I"], requiere: [] },
-    ],
+      { id: "FundPsicoSociocult", nombre: "Fundamentos Psicológicos y Socioculturales de la Intervención", abre: ["Psicología General y Evolutiva"], requiere: [] },
+      { id: "BioCelGen", nombre: "Biología Celular y Genética", abre: ["Bioquímica", "Morfología I: Anatomía, Histología y Embriología", "Fisiología General"], requiere: [] },
+      { id: "QuimGenOrg", nombre: "Química General y Orgánica", abre: ["Bioquímica"], requiere: [] },
+      { id: "IntroTO", nombre: "Introducción a la Terapia Ocupacional", abre: ["Fundamentos y Epistemología de la Ciencia de la Ocupación"], requiere: [] },
+      { id: "ElectivoFG", nombre: "Electivo Formación General", abre: [], requiere: [] },
+      { id: "Matematicas", nombre: "Matemáticas", abre: [], requiere: [] },
+      { id: "TOEI", nombre: "Terapia Ocupacional y Estrategias de Intervención I", abre: ["Terapia Ocupacional y Estrategias de Intervención II", "Práctica integrada I"], requiere: [] }
+    ]
   },
   {
     nombre: "II Semestre",
     ramos: [
-      { nombre: "Psicología General y Evolutiva", abre: ["Antropología"], requiere: ["Fundamentos Psicológicos y Socioculturales de la Intervención"] },
-      { nombre: "Bioquímica", abre: ["Farmacología"], requiere: ["Biología Celular y Genética", "Química General y Orgánica"] },
-      { nombre: "Morfología I: Anatomía, Histología y Embriología", abre: ["Morfología II: Anatomía, Histología y Embriología"], requiere: ["Biología Celular y Genética"] },
-      { nombre: "Fundamentos y Epistemología de la Ciencia de la Ocupación", abre: [], requiere: ["Introducción a la Terapia Ocupacional"] },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención II", abre: ["Terapia Ocupacional y Estrategias de Intervención III"], requiere: ["Terapia Ocupacional y Estrategias de Intervención I"] },
-    ],
+      { id: "PsicoGenEvo", nombre: "Psicología General y Evolutiva", abre: ["Antropología"], requiere: ["FundPsicoSociocult"] },
+      { id: "Bioquim", nombre: "Bioquímica", abre: ["Farmacología"], requiere: ["BioCelGen", "QuimGenOrg"] },
+      { id: "MorfI", nombre: "Morfología I: Anatomía, Histología y Embriología", abre: ["Morfología II: Anatomía, Histología y Embriología"], requiere: ["BioCelGen"] },
+      { id: "FundEpistCiencia", nombre: "Fundamentos y Epistemología de la Ciencia de la Ocupación", abre: [], requiere: ["IntroTO"] },
+      { id: "TOEII", nombre: "Terapia Ocupacional y Estrategias de Intervención II", abre: ["Terapia Ocupacional y Estrategias de Intervención III"], requiere: ["TOEI"] }
+    ]
   },
   {
     nombre: "III Semestre",
     ramos: [
-      { nombre: "Psicología Social y del Trabajo", abre: [], requiere: ["Psicología General y Evolutiva"] },
-      { nombre: "Antropología", abre: ["Salud Mental y Psicoeducación"], requiere: ["Psicología General y Evolutiva"] },
-      { nombre: "Morfología II: Anatomía, Fisiología y Embriología", abre: [], requiere: ["Morfología I: Anatomía, Histología y Embriología"] },
-      { nombre: "Fisiología General", abre: ["Fisiología de Sistemas"], requiere: ["Biología Celular y Genética"] },
-      { nombre: "Modelos Pragmáticos del Estudio de la Ocupación", abre: ["Modelos Emergentes del Estudio de la Ocupación"], requiere: ["Fundamentos y Epistemología de la Ciencia de la Ocupación"] },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención III", abre: ["Terapia Ocupacional y Estrategias de Intervención IV"], requiere: ["Terapia Ocupacional y Estrategias de Intervención II"] },
-    ],
+      { id: "PsicoSocialTrabajo", nombre: "Psicología Social y del Trabajo", abre: [], requiere: ["PsicoGenEvo"] },
+      { id: "Antropologia", nombre: "Antropología", abre: ["Salud Mental y Psicoeducación"], requiere: ["PsicoGenEvo"] },
+      { id: "MorfII", nombre: "Morfología II: Anatomía, Fisiología y Embriología", abre: [], requiere: ["MorfI"] },
+      { id: "FisiologiaGen", nombre: "Fisiología General", abre: ["Fisiología de Sistemas"], requiere: ["BioCelGen"] },
+      { id: "ModelosPragmaticos", nombre: "Modelos Pragmáticos del Estudio de la Ocupación", abre: ["Modelos Emergentes del Estudio de la Ocupación"], requiere: ["FundEpistCiencia"] },
+      { id: "TOEIII", nombre: "Terapia Ocupacional y Estrategias de Intervención III", abre: ["Terapia Ocupacional y Estrategias de Intervención IV"], requiere: ["TOEII"] }
+    ]
   },
   {
     nombre: "IV Semestre",
     ramos: [
-      { nombre: "Salud Mental y Psicoeducación", abre: [], requiere: ["Antropología"] },
-      { nombre: "Fisiología de Sistemas", abre: ["Farmacología"], requiere: ["Fisiología General"] },
-      { nombre: "Modelos Emergentes del Estudio de la Ocupación", abre: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional I"], requiere: ["Modelos Pragmáticos del Estudio de la Ocupación"] },
-      { nombre: "Investigación en Ciencias de la Salud", abre: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional I"], requiere: [] },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención IV", abre: ["Terapia Ocupacional y Estrategias de Intervención V"], requiere: ["Terapia Ocupacional y Estrategias de Intervención III"] },
-    ],
+      { id: "SaludMentalPsicoeduc", nombre: "Salud Mental y Psicoeducación", abre: [], requiere: ["Antropologia"] },
+      { id: "FisioSistemas", nombre: "Fisiología de Sistemas", abre: ["Farmacología"], requiere: ["FisiologiaGen"] },
+      { id: "ModelosEmergentes", nombre: "Modelos Emergentes del Estudio de la Ocupación", abre: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional I"], requiere: ["ModelosPragmaticos"] },
+      { id: "InvestigCienciasSalud", nombre: "Investigación en Ciencias de la Salud", abre: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional I"], requiere: [] },
+      { id: "TOEIV", nombre: "Terapia Ocupacional y Estrategias de Intervención IV", abre: ["Terapia Ocupacional y Estrategias de Intervención V"], requiere: ["TOEIII"] }
+    ]
   },
   {
     nombre: "V Semestre",
     ramos: [
-      { nombre: "Farmacología", abre: ["Fisiopatología"], requiere: ["Fisiología de Sistemas"] },
-      { nombre: "Fisiopatología", abre: ["Alteraciones Neuromusculoesqueléticas"], requiere: ["Farmacología"] },
-      { nombre: "Alteraciones Neuromusculoesqueléticas", abre: [], requiere: ["Fisiopatología"] },
-      { nombre: "Investigación en Ciencia de la Ocupación y Terapia Ocupacional I", abre: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional II"], requiere: ["Investigación en Ciencias de la Salud", "Modelos Emergentes del Estudio de la Ocupación"] },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención V", abre: ["Terapia Ocupacional y Estrategias de Intervención VI"], requiere: ["Terapia Ocupacional y Estrategias de Intervención IV"] },
-    ],
+      { id: "Farmacologia", nombre: "Farmacología", abre: ["Fisiopatología"], requiere: ["FisioSistemas"] },
+      { id: "Fisiopatologia", nombre: "Fisiopatología", abre: ["Alteraciones Neuromusculoesqueléticas"], requiere: ["Farmacologia"] },
+      { id: "AlterNeuromusc", nombre: "Alteraciones Neuromusculoesqueléticas", abre: [], requiere: ["Fisiopatologia"] },
+      { id: "InvestigCienciaTOI", nombre: "Investigación en Ciencia de la Ocupación y Terapia Ocupacional I", abre: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional II"], requiere: ["InvestigCienciasSalud", "ModelosEmergentes"] },
+      { id: "TOEV", nombre: "Terapia Ocupacional y Estrategias de Intervención V", abre: ["Terapia Ocupacional y Estrategias de Intervención VI"], requiere: ["TOEIV"] }
+    ]
   },
   {
     nombre: "VI Semestre",
     ramos: [
-      { nombre: "Investigación en Ciencia de la Ocupación y Terapia Ocupacional II", abre: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional III"], requiere: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional I"] },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención VI", abre: ["Terapia Ocupacional y Estrategias de Intervención VII"], requiere: ["Terapia Ocupacional y Estrategias de Intervención V"] },
-      { nombre: "Práctica Integrada I", abre: [], requiere: ["Terapia Ocupacional y Estrategias de Intervención I", "Terapia Ocupacional y Estrategias de Intervención II"] },
-      { nombre: "Gestión I", abre: ["Gestión en Salud II"], requiere: [] },
-      { nombre: "Gestión en Salud II", abre: ["Gestión Aplicada a Terapia Ocupacional"], requiere: ["Gestión I"] },
-      { nombre: "Gestión Aplicada a Terapia Ocupacional", abre: [], requiere: ["Gestión en Salud II"] },
-    ],
+      { id: "InvestigCienciaTOII", nombre: "Investigación en Ciencia de la Ocupación y Terapia Ocupacional II", abre: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional III"], requiere: ["InvestigCienciaTOI"] },
+      { id: "TOEVI", nombre: "Terapia Ocupacional y Estrategias de Intervención VI", abre: ["Terapia Ocupacional y Estrategias de Intervención VII"], requiere: ["TOEV"] },
+      { id: "PractIntI", nombre: "Práctica Integrada I", abre: [], requiere: ["TOEI", "TOEII"] },
+      { id: "GestionI", nombre: "Gestión I", abre: ["Gestión en Salud II"], requiere: [] },
+      { id: "GestionSaludII", nombre: "Gestión en Salud II", abre: ["Gestión Aplicada a Terapia Ocupacional"], requiere: ["GestionI"] },
+      { id: "GestionAplicTO", nombre: "Gestión Aplicada a Terapia Ocupacional", abre: [], requiere: ["GestionSaludII"] }
+    ]
   },
   {
     nombre: "VII Semestre",
     ramos: [
-      { nombre: "Investigación en Ciencia de la Ocupación y Terapia Ocupacional III", abre: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional IV"], requiere: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional II"] },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención VII", abre: ["Terapia Ocupacional y Estrategias de Intervención VIII"], requiere: ["Terapia Ocupacional y Estrategias de Intervención VI"] },
-      { nombre: "Práctica Integrada II: En Educación/Trabajo", abre: [], requiere: ["Práctica Integrada I"] },
-      { nombre: "Ocupación y Redes", abre: [], requiere: [] },
-      { nombre: "Ocupación y Cultura", abre: [], requiere: [] },
-      { nombre: "Historias y Perfiles Ocupacionales", abre: [], requiere: [] },
-    ],
+      { id: "InvestigCienciaTOIII", nombre: "Investigación en Ciencia de la Ocupación y Terapia Ocupacional III", abre: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional IV"], requiere: ["InvestigCienciaTOII"] },
+      { id: "TOEVII", nombre: "Terapia Ocupacional y Estrategias de Intervención VII", abre: ["Terapia Ocupacional y Estrategias de Intervención VIII"], requiere: ["TOEVI"] },
+      { id: "PractIntII", nombre: "Práctica Integrada II: En Educación/Trabajo", abre: [], requiere: ["PractIntI"] },
+      { id: "OcupacionRedes", nombre: "Ocupación y Redes", abre: [], requiere: [] },
+      { id: "OcupacionCultura", nombre: "Ocupación y Cultura", abre: [], requiere: [] },
+      { id: "HistoriasPerfiles", nombre: "Historias y Perfiles Ocupacionales", abre: [], requiere: [] }
+    ]
   },
   {
     nombre: "VIII Semestre",
     ramos: [
-      { nombre: "Investigación en Ciencia de la Ocupación y Terapia Ocupacional IV", abre: [], requiere: ["Investigación en Ciencia de la Ocupación y Terapia Ocupacional III"] },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención VIII", abre: [], requiere: ["Terapia Ocupacional y Estrategias de Intervención VII"] },
-      { nombre: "Práctica Integrada III: En Desarrollo Social/Justicia", abre: ["Práctica Profesional I"], requiere: ["Práctica Integrada II: En Educación/Trabajo"] },
-      { nombre: "Análisis Ocupacionales Avanzados", abre: [], requiere: [] },
-      { nombre: "FG: GRIPS", abre: [], requiere: [] },
-      { nombre: "Práctica Profesional I", abre: [], requiere: ["Práctica Integrada III: En Desarrollo Social/Justicia"] },
-    ],
+      { id: "InvestigCienciaTOVIII", nombre: "Investigación en Ciencia de la Ocupación y Terapia Ocupacional IV", abre: [], requiere: ["InvestigCienciaTOIII"] },
+      { id: "TOEVIII", nombre: "Terapia Ocupacional y Estrategias de Intervención VIII", abre: [], requiere: ["TOEVII"] },
+      { id: "PractIntIII", nombre: "Práctica Integrada III: En Desarrollo Social/Justicia", abre: ["Práctica Profesional I"], requiere: ["PractIntII"] },
+      { id: "AnalisisOcup", nombre: "Análisis Ocupacionales Avanzados", abre: [], requiere: [] },
+      { id: "FGGRIPS", nombre: "FG: GRIPS", abre: [], requiere: [] },
+      { id: "PractProfI", nombre: "Práctica Profesional I", abre: ["Práctica Profesional II"], requiere: ["PractIntIII"] }
+    ]
   },
   {
     nombre: "IX Semestre",
     ramos: [
-      { nombre: "Práctica Profesional II", abre: [], requiere: ["Práctica Profesional I"] },
-      { nombre: "Práctica Profesional III", abre: [], requiere: ["Práctica Profesional II"] },
-    ],
+      { id: "PractProfII", nombre: "Práctica Profesional II", abre: ["Práctica Profesional III"], requiere: ["PractProfI"] },
+      { id: "PractProfIII", nombre: "Práctica Profesional III", abre: ["Proyecto de Titulación"], requiere: ["PractProfII"] }
+    ]
   },
   {
     nombre: "X Semestre",
     ramos: [
-      { nombre: "Proyecto de Titulación", abre: [], requiere: ["Práctica Profesional III"] },
-    ],
-  },
+      { id: "ProyectoTitulacion", nombre: "Proyecto de Titulación", abre: [], requiere: ["PractProfIII"] }
+    ]
+  }
 ];
 
-// Estado inicial: desbloqueados los ramos sin requisito
-// guardamos los aprobados en localStorage
+// Guardar el estado aprobado (localStorage key)
+const STORAGE_KEY = "mallaAprobados";
 
-// Para facilitar la búsqueda por nombre
-const ramoMap = new Map();
+// Estado de aprobados (ids)
+let aprobados = new Set();
 
-// Guardar estado aprobado
-let aprobados = new Set(JSON.parse(localStorage.getItem("aprobados")) || []);
-
-function renderMalla() {
-  const container = document.getElementById("malla");
-  container.innerHTML = "";
-
-  // Crear mapa nombre-> ramo para fácil acceso
-  ramoMap.clear();
-  for (const semestre of semestres) {
-    for (const ramo of semestre.ramos) {
-      ramoMap.set(ramo.nombre, ramo);
+// Cargar aprobados guardados
+function cargarAprobados() {
+  const data = localStorage.getItem(STORAGE_KEY);
+  if (data) {
+    try {
+      const arr = JSON.parse(data);
+      aprobados = new Set(arr);
+    } catch {
+      aprobados = new Set();
     }
-  }
-
-  for (const semestre of semestres) {
-    const semestreDiv = document.createElement("div");
-    semestreDiv.classList.add("semestre");
-
-    const titulo = document.createElement("div");
-    titulo.classList.add("semestre-title");
-    titulo.textContent = semestre.nombre;
-    semestreDiv.appendChild(titulo);
-
-    for (const ramo of semestre.ramos) {
-      const ramoBtn = document.createElement("button");
-      ramoBtn.classList.add("ramo");
-      ramoBtn.textContent = ramo.nombre;
-
-      // Estado: aprobado, bloqueado o desbloqueado
-      // Un ramo se desbloquea si TODOS sus requisitos están aprobados
-      const requisitosAprobados = ramo.requiere.every((r) => aprobados.has(r));
-      const estaAprobado = aprobados.has(ramo.nombre);
-
-      if (!requisitosAprobados && !estaAprobado) {
-        ramoBtn.classList.add("locked");
-        ramoBtn.disabled = true;
-      } else if (estaAprobado) {
-        ramoBtn.classList.add("approved");
-      }
-
-      // Mostrar info abre y requiere
-      const info = document.createElement("div");
-      info.classList.add("ramo-info");
-      let abreText = ramo.abre.length > 0 ? `Abre: ${ramo.abre.join(", ")}` : "No abre otros ramos";
-      let requiereText = ramo.requiere.length > 0 ? `Requiere: ${ramo.requiere.join(", ")}` : "No requiere ramos";
-      info.innerHTML = `<small>${abreText}<br>${requiereText}</small>`;
-
-      semestreDiv.appendChild(ramoBtn);
-      semestreDiv.appendChild(info);
-
-      ramoBtn.addEventListener("click", () => {
-        if (aprobados.has(ramo.nombre)) {
-          aprobados.delete(ramo.nombre);
-        } else {
-          // Solo puede aprobar si está desbloqueado
-          if (!ramoBtn.classList.contains("locked")) {
-            aprobados.add(ramo.nombre);
-          }
-        }
-        // Actualizar localStorage
-        localStorage.setItem("aprobados", JSON.stringify(Array.from(aprobados)));
-        renderMalla();
-      });
-    }
-    container.appendChild(semestreDiv);
   }
 }
 
-renderMalla();
+// Guardar aprobados en localStorage
+function guardarAprobados() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(aprobados)));
+}
+
+// Verificar si un ramo está desbloqueado (prerrequisitos aprobados)
+function estaDesbloqueado(ramo) {
+  if (!ramo.requiere || ramo.requiere.length === 0) return true;
+  return ramo.requiere.every(prer => aprobados.has(prer));
+}
+
+// Crear el DOM de la malla
+function crearMalla() {
+  const contenedor = document.getElementById("malla");
+  contenedor.innerHTML = "";
+
+  semestres.forEach(semestre => {
+    const divSem = document.createElement("div");
+    divSem.className = "semestre";
+
+    const titulo = document.createElement("div");
+    titulo.className = "semestre-title";
+    titulo.textContent = semestre.nombre;
+    divSem.appendChild(titulo);
+
+    semestre.ramos.forEach(ramo => {
+      const boton = document.createElement("button");
+      boton.className = "ramo";
+      boton.textContent = ramo.nombre;
+
+      // id para control
+      boton.dataset.id = ramo.id;
+
+      // Estado bloqueado o no
+      if (aprobados.has(ramo.id)) {
+        boton.classList.add("approved");
+      } else if (!estaDesbloqueado(ramo)) {
+        boton.classList.add("locked");
+        boton.disabled = true;
+      }
+
+      // Info pequeña de abre y requiere
+      const info = document.createElement("div");
+      info.className = "ramo-info";
+
+      // Mostrar qué abre
+      if (ramo.abre && ramo.abre.length > 0) {
+        info.textContent = "Abre: " + ramo.abre.join(", ");
+      }
+
+      boton.appendChild(info);
+
+      // Click para aprobar/desaprobar si está desbloqueado
+      boton.addEventListener("click", () => {
+        if (boton.disabled) return;
+        if (aprobados.has(ramo.id)) {
+          aprobados.delete(ramo.id);
+        } else {
+          aprobados.add(ramo.id);
+        }
+        guardarAprobados();
+        crearMalla(); // refrescar estado
+      });
+
+      divSem.appendChild(boton);
+    });
+
+    contenedor.appendChild(divSem);
+  });
+}
+
+// Inicializar
+cargarAprobados();
+crearMalla();
+
 
 
