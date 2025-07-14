@@ -21,8 +21,8 @@ h1 {
   overflow-x: auto;
   padding: 15px;
   gap: 15px;
-  height: auto;
   box-sizing: border-box;
+  height: auto;
 }
 
 .semestre {
@@ -33,9 +33,9 @@ h1 {
   box-shadow: 0 0 6px #9b7aff;
   display: flex;
   flex-direction: column;
-  height: auto; /* permite crecer con ramos */
-  max-height: none; /* elimina límite */
-  overflow-y: visible; /* no scroll vertical */
+  height: auto;
+  max-height: none;
+  overflow-y: visible;
   box-sizing: border-box;
 }
 
@@ -87,10 +87,5 @@ h1 {
 .ramo:focus {
   outline: 2px solid #5c3aa3;
   outline-offset: 2px;
-}
-
-/* Eliminamos ramo-info porque no la usamos */
-.ramo-info {
-  display: none;
 }
 
