@@ -1,16 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Malla Curricular Interactiva</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Malla Curricular Interactiva - Prueba</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f9f7fb;
+    margin: 20px;
+    color: #3a0ca3;
+  }
+  h1 {
+    text-align: center;
+  }
+  #malla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+    gap: 15px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #7e6de0aa;
+    margin-top: 20px;
+  }
+  .curso {
+    background-color: #e0d9f9;
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 6px rgba(58,12,163,0.3);
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent;
+  }
+</style>
 </head>
 <body>
-  <h1>Malla Curricular Interactiva - Terapia Ocupacional</h1>
+  <h1>Malla Curricular Interactiva - Prueba</h1>
   <div id="malla"></div>
 
-  <script src="script.js"></script>
+  <script>
+    const cursos = [
+      { id: 'curso1', nombre: 'Curso de prueba 1', abre: ['curso2'], prereq: [] },
+      { id: 'curso2', nombre: 'Curso de prueba 2', abre: [], prereq: ['curso1'] },
+    ];
+
+    function renderizarCursos() {
+      const mallaDiv = document.getElementById('malla');
+      cursos.forEach(curso => {
+        const div = document.createElement('div');
+        div.classList.add('curso');
+        div.textContent = curso.nombre;
+        mallaDiv.appendChild(div);
+      });
+    }
+
+    renderizarCursos();
+  </script>
 </body>
 </html>
+
 
