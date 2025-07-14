@@ -3,7 +3,6 @@ body {
   font-family: Arial, sans-serif;
   margin: 20px;
   color: #3a0066;
-  overflow-x: hidden;
 }
 
 h1 {
@@ -14,45 +13,48 @@ h1 {
 /* Contenedor horizontal con scroll */
 #malla {
   display: flex;
+  flex-wrap: nowrap; /* NO permite salto de línea */
   gap: 20px;
-  overflow-x: auto;
+  overflow-x: auto; /* scroll horizontal */
   padding: 10px;
   border: 2px solid #b399ff;
   background: #f5f0ff;
   border-radius: 10px;
   height: 400px;
+  white-space: nowrap; /* para evitar saltos */
 }
 
-/* Cada semestre es una columna vertical */
+/* Cada semestre es una columna vertical fija */
 .semestre {
-  flex: 0 0 230px; /* ancho fijo */
+  flex: 0 0 250px; /* ancho fijo */
   background-color: #d1b3ff;
   border-radius: 8px;
-  padding: 8px;
+  padding: 10px;
   box-shadow: 0 0 6px #9b7aff;
   display: flex;
   flex-direction: column;
   max-height: 100%;
   overflow-y: auto;
+  white-space: normal; /* texto dentro sin forzar horizontal */
 }
 
 /* Título semestre */
 .semestre-title {
   font-weight: bold;
   font-size: 18px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   text-align: center;
   color: #3a0066;
   border-bottom: 2px solid #b399ff;
-  padding-bottom: 5px;
+  padding-bottom: 6px;
 }
 
 /* Ramo (botón) */
 .ramo {
   background-color: #b399ff;
   border-radius: 5px;
-  margin-bottom: 6px;
-  padding: 6px 8px;
+  margin-bottom: 8px;
+  padding: 8px 10px;
   cursor: pointer;
   color: white;
   user-select: none;
@@ -83,8 +85,9 @@ h1 {
 /* Info interna de cada ramo (abre, requiere) */
 .ramo-info {
   font-size: 10px;
-  margin-top: 2px;
+  margin-top: 3px;
   opacity: 0.75;
   color: #220066;
 }
+
 
