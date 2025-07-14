@@ -6,11 +6,17 @@ body {
   padding: 20px;
 }
 
+h1 {
+  text-align: center;
+  color: #4a148c;
+}
+
 #malla {
   display: flex;
   flex-direction: row;
   gap: 20px;
   width: max-content;
+  padding-bottom: 20px;
 }
 
 .semestre {
@@ -33,7 +39,7 @@ body {
 .ramo {
   background-color: #e1bee7;
   border: none;
-  padding: 8px 12px;
+  padding: 8px 12px 8px 28px;
   margin: 5px 0;
   border-radius: 8px;
   width: 100%;
@@ -55,9 +61,10 @@ body {
 }
 
 .ramo::before {
-  content: "";
   position: absolute;
-  left: 5px;
+  left: 8px;
+  top: 8px;
+  font-size: 14px;
 }
 
 .ramo.approved::before {
@@ -67,4 +74,5 @@ body {
 .ramo.locked::before {
   content: "🔒";
 }
+
 
