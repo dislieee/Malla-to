@@ -22,7 +22,6 @@ h1 {
   padding: 15px;
   gap: 15px;
   box-sizing: border-box;
-  height: auto;
 }
 
 .semestre {
@@ -33,9 +32,6 @@ h1 {
   box-shadow: 0 0 6px #9b7aff;
   display: flex;
   flex-direction: column;
-  height: auto;
-  max-height: none;
-  overflow-y: visible;
   box-sizing: border-box;
 }
 
@@ -82,6 +78,11 @@ h1 {
   background-color: #7e57c2;
   color: white;
   box-shadow: 0 0 10px #6a3bc7;
+}
+
+.ramo .icon {
+  display: inline-block;
+  margin-right: 6px;
 }
 
 .ramo:focus {
