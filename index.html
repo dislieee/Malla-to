@@ -2,67 +2,110 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Malla Curricular de Terapia Ocupacional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Malla Curricular Terapia Ocupacional</title>
   <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
   <h1>Malla Curricular de Terapia Ocupacional</h1>
 
   <div id="malla">
-    <!-- SEMESTRES 1 AL 10 -->
     <div class="semestre" id="sem1">
       <div class="semestre-title">Semestre 1</div>
-      <button class="ramo" data-nombre="Fundamentos Psicológicos">🔒 Fundamentos Psicológicos</button>
-      <button class="ramo" data-nombre="Biología Celular">🔒 Biología Celular</button>
-      <button class="ramo" data-nombre="Química General">🔒 Química General</button>
-      <button class="ramo" data-nombre="Intro a la Terapia Ocupacional">🔒 Introducción a la TO</button>
-      <button class="ramo" data-nombre="Electivo FG">🔒 Electivo FG</button>
-      <button class="ramo" data-nombre="Matemáticas">🔒 Matemáticas</button>
-      <button class="ramo" data-nombre="TO Intervención I">🔒 TO Intervención I</button>
+      <button class="ramo locked" data-nombre="Fundamentos Psicológicos">🔒 Fundamentos Psicológicos</button>
+      <button class="ramo locked" data-nombre="Biología Celular">🔒 Biología Celular</button>
+      <button class="ramo locked" data-nombre="Química General">🔒 Química General</button>
+      <button class="ramo locked" data-nombre="Introducción a la TO">🔒 Introducción a la TO</button>
+      <button class="ramo locked" data-nombre="Electivo FG">🔒 Electivo FG</button>
+      <button class="ramo locked" data-nombre="Matemáticas">🔒 Matemáticas</button>
+      <button class="ramo locked" data-nombre="TO Intervención I">🔒 TO Intervención I</button>
     </div>
 
     <div class="semestre" id="sem2">
       <div class="semestre-title">Semestre 2</div>
-      <button class="ramo" data-nombre="Psicología General" data-requiere="Fundamentos Psicológicos">🔒 Psicología General</button>
-      <button class="ramo" data-nombre="Bioquímica" data-requiere="Química General,Biología Celular">🔒 Bioquímica</button>
-      <button class="ramo" data-nombre="Morfología I" data-requiere="Biología Celular">🔒 Morfología I</button>
-      <button class="ramo" data-nombre="Fund. Epistemología">🔒 Fund. Epistemología</button>
-      <button class="ramo" data-nombre="TO Intervención II" data-requiere="TO Intervención I">🔒 TO Intervención II</button>
+      <button class="ramo locked" data-nombre="Psicología General" data-requiere="Fundamentos Psicológicos">🔒 Psicología General</button>
+      <button class="ramo locked" data-nombre="Bioquímica" data-requiere="Química General,Biología Celular">🔒 Bioquímica</button>
+      <button class="ramo locked" data-nombre="Morfología I" data-requiere="Biología Celular">🔒 Morfología I</button>
+      <button class="ramo locked" data-nombre="Fundamentos de Epistemología">🔒 Fundamentos de Epistemología</button>
+      <button class="ramo locked" data-nombre="TO Intervención II" data-requiere="TO Intervención I">🔒 TO Intervención II</button>
     </div>
 
     <div class="semestre" id="sem3">
       <div class="semestre-title">Semestre 3</div>
-      <button class="ramo" data-nombre="Psicología Social" data-requiere="Psicología General">🔒 Psicología Social</button>
-      <button class="ramo" data-nombre="Antropología" data-requiere="Psicología General">🔒 Antropología</button>
-      <button class="ramo" data-nombre="Morfología II" data-requiere="Morfología I">🔒 Morfología II</button>
-      <button class="ramo" data-nombre="Fisiología General" data-requiere="Biología Celular">🔒 Fisiología General</button>
-      <button class="ramo" data-nombre="Modelos Pragmáticos" data-requiere="Fund. Epistemología">🔒 Modelos Pragmáticos</button>
-      <button class="ramo" data-nombre="TO Intervención III" data-requiere="TO Intervención II">🔒 TO Intervención III</button>
+      <button class="ramo locked" data-nombre="Psicología Social" data-requiere="Psicología General">🔒 Psicología Social</button>
+      <button class="ramo locked" data-nombre="Antropología" data-requiere="Psicología General">🔒 Antropología</button>
+      <button class="ramo locked" data-nombre="Morfología II" data-requiere="Morfología I">🔒 Morfología II</button>
+      <button class="ramo locked" data-nombre="Fisiología General" data-requiere="Biología Celular">🔒 Fisiología General</button>
+      <button class="ramo locked" data-nombre="Modelos Pragmáticos" data-requiere="Fundamentos de Epistemología">🔒 Modelos Pragmáticos</button>
+      <button class="ramo locked" data-nombre="TO Intervención III" data-requiere="TO Intervención II">🔒 TO Intervención III</button>
     </div>
 
     <div class="semestre" id="sem4">
       <div class="semestre-title">Semestre 4</div>
-      <button class="ramo" data-nombre="Salud Mental" data-requiere="Antropología">🔒 Salud Mental</button>
-      <button class="ramo" data-nombre="Fisiología Sistemas" data-requiere="Fisiología General">🔒 Fisiología Sistemas</button>
-      <button class="ramo" data-nombre="Modelos Emergentes" data-requiere="Modelos Pragmáticos">🔒 Modelos Emergentes</button>
-      <button class="ramo" data-nombre="Investigación Salud">🔒 Investigación Salud</button>
-      <button class="ramo" data-nombre="TO Intervención IV" data-requiere="TO Intervención III">🔒 TO Intervención IV</button>
+      <button class="ramo locked" data-nombre="Salud Mental" data-requiere="Antropología">🔒 Salud Mental</button>
+      <button class="ramo locked" data-nombre="Fisiología Sistemas" data-requiere="Fisiología General">🔒 Fisiología Sistemas</button>
+      <button class="ramo locked" data-nombre="Modelos Emergentes" data-requiere="Modelos Pragmáticos">🔒 Modelos Emergentes</button>
+      <button class="ramo locked" data-nombre="Investigación en Salud">🔒 Investigación en Salud</button>
+      <button class="ramo locked" data-nombre="TO Intervención IV" data-requiere="TO Intervención III">🔒 TO Intervención IV</button>
     </div>
 
     <div class="semestre" id="sem5">
       <div class="semestre-title">Semestre 5</div>
-      <button class="ramo" data-nombre="Farmacología" data-requiere="Fisiología Sistemas">🔒 Farmacología</button>
-      <button class="ramo" data-nombre="Fisiopatología" data-requiere="Farmacología">🔒 Fisiopatología</button>
-      <button class="ramo" data-nombre="Alteraciones Neuro" data-requiere="Fisiopatología">🔒 Alteraciones Neuro</button>
-      <button class="ramo" data-nombre="Investigación TO I" data-requiere="Modelos Emergentes,Investigación Salud">🔒 Investigación TO I</button>
-      <button class="ramo" data-nombre="TO Intervención V" data-requiere="TO Intervención IV">🔒 TO Intervención V</button>
+      <button class="ramo locked" data-nombre="Farmacología" data-requiere="Fisiología Sistemas">🔒 Farmacología</button>
+      <button class="ramo locked" data-nombre="Fisiopatología" data-requiere="Farmacología">🔒 Fisiopatología</button>
+      <button class="ramo locked" data-nombre="Alteraciones Neurológicas" data-requiere="Fisiopatología">🔒 Alteraciones Neurológicas</button>
+      <button class="ramo locked" data-nombre="Investigación TO I" data-requiere="Modelos Emergentes,Investigación en Salud">🔒 Investigación TO I</button>
+      <button class="ramo locked" data-nombre="TO Intervención V" data-requiere="TO Intervención IV">🔒 TO Intervención V</button>
     </div>
 
     <div class="semestre" id="sem6">
       <div class="semestre-title">Semestre 6</div>
-      <button class="ramo" data-nombre="Investigación TO II" data-requiere="Investigación TO I">🔒 Investigación TO II</button>
-      <button class="ramo" data-nombre="TO Intervención VI" data-requiere="TO Intervención V">🔒 TO Intervención VI</button>
-      <button class="ramo" data-nombre="Práctica Integrada I" data-requiere="TO Intervención I,TO Intervención II">🔒 Práctica Integrada I</button>
-      <button class="ramo" data-nombre="Gestión I">🔒 Gestión I</button>
-      <button class="ramo" data-nombre="Gestión II" data-requiere="Gestión I"
+      <button class="ramo locked" data-nombre="Investigación TO II" data-requiere="Investigación TO I">🔒 Investigación TO II</button>
+      <button class="ramo locked" data-nombre="TO Intervención VI" data-requiere="TO Intervención V">🔒 TO Intervención VI</button>
+      <button class="ramo locked" data-nombre="Práctica Integrada I" data-requiere="TO Intervención I,TO Intervención II">🔒 Práctica Integrada I</button>
+      <button class="ramo locked" data-nombre="Gestión I">🔒 Gestión I</button>
+      <button class="ramo locked" data-nombre="Gestión II" data-requiere="Gestión I">🔒 Gestión II</button>
+      <button class="ramo locked" data-nombre="Gestión Aplicada" data-requiere="Gestión II">🔒 Gestión Aplicada</button>
+    </div>
+
+    <div class="semestre" id="sem7">
+      <div class="semestre-title">Semestre 7</div>
+      <button class="ramo locked" data-nombre="Investigación TO III" data-requiere="Investigación TO II">🔒 Investigación TO III</button>
+      <button class="ramo locked" data-nombre="TO Intervención VII" data-requiere="TO Intervención VI">🔒 TO Intervención VII</button>
+      <button class="ramo locked" data-nombre="Práctica Integrada II" data-requiere="Práctica Integrada I">🔒 Práctica Integrada II</button>
+      <button class="ramo locked" data-nombre="Ocupación y Redes">🔒 Ocupación y Redes</button>
+      <button class="ramo locked" data-nombre="Ocupación y Cultura">🔒 Ocupación y Cultura</button>
+      <button class="ramo locked" data-nombre="Historias Ocupacionales">🔒 Historias Ocupacionales</button>
+    </div>
+
+    <div class="semestre" id="sem8">
+      <div class="semestre-title">Semestre 8</div>
+      <button class="ramo locked" data-nombre="Investigación TO IV" data-requiere="Investigación TO III">🔒 Investigación TO IV</button>
+      <button class="ramo locked" data-nombre="TO Intervención VIII" data-requiere="TO Intervención VII">🔒 TO Intervención VIII</button>
+      <button class="ramo locked" data-nombre="Práctica Integrada III" data-requiere="Práctica Integrada II">🔒 Práctica Integrada III</button>
+      <button class="ramo locked" data-nombre="Análisis Ocupacionales">🔒 Análisis Ocupacionales</button>
+      <button class="ramo locked" data-nombre="FG: GRIPS">🔒 FG: GRIPS</button>
+      <button class="ramo locked" data-nombre="Práctica Profesional I" data-requiere="Práctica Integrada III">🔒 Práctica Profesional I</button>
+    </div>
+
+    <div class="semestre" id="sem9">
+      <div class="semestre-title">Semestre 9</div>
+      <button class="ramo locked" data-nombre="Seminario de Titulación" data-requiere="Investigación TO IV">🔒 Seminario de Titulación</button>
+      <button class="ramo locked" data-nombre="Práctica Profesional II" data-requiere="Práctica Profesional I">🔒 Práctica Profesional II</button>
+      <button class="ramo locked" data-nombre="Práctica Profesional III" data-requiere="Práctica Profesional II">🔒 Práctica Profesional III</button>
+      <button class="ramo locked" data-nombre="Desarrollo Profesional">🔒 Desarrollo Profesional</button>
+      <button class="ramo locked" data-nombre="Electivo Profesional">🔒 Electivo Profesional</button>
+    </div>
+
+    <div class="semestre" id="sem10">
+      <div class="semestre-title">Semestre 10</div>
+      <button class="ramo locked" data-nombre="Memoria de Título" data-requiere="Seminario de Titulación">🔒 Memoria de Título</button>
+      <button class="ramo locked" data-nombre="Práctica Profesional IV" data-requiere="Práctica Profesional III">🔒 Práctica Profesional IV</button>
+      <button class="ramo locked" data-nombre="Práctica Profesional V" data-requiere="Práctica Profesional IV">🔒 Práctica Profesional V</button>
+      <button class="ramo locked" data-nombre="Electivo Profesional II">🔒 Electivo Profesional II</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
