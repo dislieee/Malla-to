@@ -1,66 +1,66 @@
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f3e5f5; /* morado claro */
-  color: #333;
+  background-color: #f3e5f5; /* Morado claro */
+  margin: 0;
+  padding: 20px;
   overflow-x: auto;
 }
 
 h1 {
   text-align: center;
-  padding: 20px;
   color: #4a148c;
 }
 
-#malla {
+.contenedor-semestres {
   display: flex;
+  flex-direction: row;
   gap: 20px;
-  padding: 20px;
   overflow-x: auto;
 }
 
 .semestre {
-  min-width: 250px;
-  background-color: #ede7f6;
-  border: 1px solid #b39ddb;
+  min-width: 280px;
+  background-color: #ffffff;
+  border: 2px solid #ba68c8;
   border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 10px;
   flex-shrink: 0;
 }
 
 .semestre h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #6a1b9a;
+  font-size: 16px;
   text-align: center;
+  color: #6a1b9a;
+}
+
+.ramos {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .ramo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #d1c4e9;
-  padding: 8px 12px;
-  margin: 5px 0;
-  border: none;
-  border-radius: 6px;
+  background-color: #e1bee7;
+  border-radius: 5px;
+  padding: 5px;
   cursor: pointer;
+  text-align: center;
   font-size: 14px;
-  color: #4a148c;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 
 .ramo:hover {
-  background-color: #b39ddb;
+  background-color: #ce93d8;
 }
 
-.ramo:disabled {
-  background-color: #ccc;
-  color: #888;
-  cursor: not-allowed;
+.ramo.aprobado {
+  background-color: #c8e6c9;
 }
 
-.icono {
-  font-size: 16px;
+.ramo.aprobado::after {
+  content: " ✅";
+}
+
+.ramo.bloqueado::after {
+  content: " 🔒";
 }
