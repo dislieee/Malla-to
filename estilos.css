@@ -1,76 +1,90 @@
 body {
   margin: 0;
-  font-family: sans-serif;
-  background-color: #f3e5f5; /* morado claro */
-  overflow-x: auto;
-  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f6f0ff;
+  color: #4b2e83;
+  user-select: none;
 }
 
 h1 {
   text-align: center;
-  color: #4a148c;
+  padding: 20px 0;
+  background-color: #9b7aff;
+  color: white;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 1.5px;
 }
 
 #malla {
   display: flex;
-  flex-direction: row;
-  gap: 20px;
-  width: max-content;
-  padding-bottom: 20px;
+  overflow-x: auto;
+  padding: 15px;
+  gap: 15px;
+  box-sizing: border-box;
+  height: auto;
 }
 
 .semestre {
-  background: white;
+  flex: 0 0 260px;
+  background-color: #d1b3ff;
+  border-radius: 8px;
   padding: 10px;
-  border-radius: 10px;
-  min-width: 200px;
+  box-shadow: 0 0 6px #9b7aff;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  box-shadow: 0 0 10px #ccc;
+  height: auto;
+  max-height: none;
+  overflow-y: visible;
+  box-sizing: border-box;
 }
 
 .semestre-title {
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 1.1em;
+  margin-bottom: 12px;
   text-align: center;
+  color: #5a3cae;
+  border-bottom: 2px solid #9b7aff;
+  padding-bottom: 5px;
 }
 
 .ramo {
-  background-color: #e1bee7;
+  background-color: #b39ddb;
   border: none;
-  padding: 8px 12px 8px 28px;
-  margin: 5px 0;
-  border-radius: 8px;
-  width: 100%;
-  text-align: left;
+  border-radius: 6px;
+  padding: 10px 8px;
+  margin-bottom: 10px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.9em;
+  color: #3b2370;
+  box-shadow: inset 0 0 3px #7a4fca;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: normal;
+  text-align: center;
+  user-select: none;
   position: relative;
 }
 
+.ramo:hover:not(.locked):not(.approved) {
+  background-color: #9575cd;
+  color: white;
+}
+
 .ramo.locked {
-  background-color: #d1c4e9;
-  color: #999;
+  background-color: #ccc;
+  color: #888;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .ramo.approved {
-  background-color: #c8e6c9;
-  color: #2e7d32;
+  background-color: #7e57c2;
+  color: white;
+  box-shadow: 0 0 10px #6a3bc7;
 }
 
-.ramo::before {
-  position: absolute;
-  left: 8px;
-  top: 8px;
-  font-size: 14px;
-}
-
-.ramo.approved::before {
-  content: "✅";
-}
-
-.ramo.locked::before {
-  content: "🔒";
+.ramo:focus {
+  outline: 2px solid #5c3aa3;
+  outline-offset: 2px;
 }
