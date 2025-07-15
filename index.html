@@ -3,47 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Malla Curricular Terapia Ocupacional</title>
+  <title>Malla Curricular de Terapia Ocupacional</title>
   <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
   <h1>Malla Curricular de Terapia Ocupacional</h1>
+
   <div id="malla">
-    <div class="semestre" id="semestre1">
+    <!-- SEMESTRES 1 AL 10 -->
+    <div class="semestre" id="sem1">
       <div class="semestre-title">Semestre 1</div>
-      <div class="ramo" data-nombre="Fundamentos Psicológicos y Socioculturales de la Intervención">🔒 Fundamentos Psicológicos</div>
-      <div class="ramo" data-nombre="Biología Celular y Genética">🔒 Biología Celular y Genética</div>
-      <div class="ramo" data-nombre="Química General y Orgánica">🔒 Química General y Orgánica</div>
-      <div class="ramo" data-nombre="Introducción a la Terapia Ocupacional">🔒 Introducción a la TO</div>
-      <div class="ramo" data-nombre="Electivo Formación General">🔒 Electivo FG</div>
-      <div class="ramo" data-nombre="Matemáticas">🔒 Matemáticas</div>
-      <div class="ramo" data-nombre="Terapia Ocupacional y Estrategias de Intervención I">🔒 TO Intervención I</div>
+      <button class="ramo" data-nombre="Fundamentos Psicológicos">🔒 Fundamentos Psicológicos</button>
+      <button class="ramo" data-nombre="Biología Celular">🔒 Biología Celular</button>
+      <button class="ramo" data-nombre="Química General">🔒 Química General</button>
+      <button class="ramo" data-nombre="Intro a la Terapia Ocupacional">🔒 Introducción a la TO</button>
+      <button class="ramo" data-nombre="Electivo FG">🔒 Electivo FG</button>
+      <button class="ramo" data-nombre="Matemáticas">🔒 Matemáticas</button>
+      <button class="ramo" data-nombre="TO Intervención I">🔒 TO Intervención I</button>
     </div>
 
-    <div class="semestre" id="semestre2">
+    <div class="semestre" id="sem2">
       <div class="semestre-title">Semestre 2</div>
-      <div class="ramo" data-nombre="Psicología General y Evolutiva" data-requiere="Fundamentos Psicológicos y Socioculturales de la Intervención">🔒 Psicología General</div>
-      <div class="ramo" data-nombre="Bioquímica" data-requiere="Química General y Orgánica">🔒 Bioquímica</div>
-      <div class="ramo" data-nombre="Morfología I">🔒 Morfología I</div>
-      <div class="ramo" data-nombre="Fundamentos y Epistemología de la Ciencia de la Ocupación">🔒 Fund. y Epistemología</div>
-      <div class="ramo" data-nombre="Terapia Ocupacional y Estrategias de Intervención II" data-requiere="Terapia Ocupacional y Estrategias de Intervención I">🔒 TO Intervención II</div>
+      <button class="ramo" data-nombre="Psicología General" data-requiere="Fundamentos Psicológicos">🔒 Psicología General</button>
+      <button class="ramo" data-nombre="Bioquímica" data-requiere="Química General,Biología Celular">🔒 Bioquímica</button>
+      <button class="ramo" data-nombre="Morfología I" data-requiere="Biología Celular">🔒 Morfología I</button>
+      <button class="ramo" data-nombre="Fund. Epistemología">🔒 Fund. Epistemología</button>
+      <button class="ramo" data-nombre="TO Intervención II" data-requiere="TO Intervención I">🔒 TO Intervención II</button>
     </div>
 
-    <!-- Repite esta estructura para los 10 semestres -->
-
-    <div class="semestre" id="semestre3">
+    <div class="semestre" id="sem3">
       <div class="semestre-title">Semestre 3</div>
-      <div class="ramo" data-nombre="Psicología Social y del Trabajo" data-requiere="Psicología General y Evolutiva">🔒 Psicología Social</div>
-      <div class="ramo" data-nombre="Antropología" data-requiere="Psicología General y Evolutiva">🔒 Antropología</div>
-      <div class="ramo" data-nombre="Morfología II" data-requiere="Morfología I">🔒 Morfología II</div>
-      <div class="ramo" data-nombre="Fisiología General" data-requiere="Biología Celular y Genética">🔒 Fisiología General</div>
-      <div class="ramo" data-nombre="Modelos Pragmáticos del Estudio de la Ocupación" data-requiere="Fundamentos y Epistemología de la Ciencia de la Ocupación">🔒 Modelos Pragmáticos</div>
-      <div class="ramo" data-nombre="Terapia Ocupacional y Estrategias de Intervención III" data-requiere="Terapia Ocupacional y Estrategias de Intervención II">🔒 TO Intervención III</div>
+      <button class="ramo" data-nombre="Psicología Social" data-requiere="Psicología General">🔒 Psicología Social</button>
+      <button class="ramo" data-nombre="Antropología" data-requiere="Psicología General">🔒 Antropología</button>
+      <button class="ramo" data-nombre="Morfología II" data-requiere="Morfología I">🔒 Morfología II</button>
+      <button class="ramo" data-nombre="Fisiología General" data-requiere="Biología Celular">🔒 Fisiología General</button>
+      <button class="ramo" data-nombre="Modelos Pragmáticos" data-requiere="Fund. Epistemología">🔒 Modelos Pragmáticos</button>
+      <button class="ramo" data-nombre="TO Intervención III" data-requiere="TO Intervención II">🔒 TO Intervención III</button>
     </div>
 
-    <!-- Semestres 4 a 10 los puedes copiar siguiendo el mismo formato -->
-  </div>
+    <div class="semestre" id="sem4">
+      <div class="semestre-title">Semestre 4</div>
+      <button class="ramo" data-nombre="Salud Mental" data-requiere="Antropología">🔒 Salud Mental</button>
+      <button class="ramo" data-nombre="Fisiología Sistemas" data-requiere="Fisiología General">🔒 Fisiología Sistemas</button>
+      <button class="ramo" data-nombre="Modelos Emergentes" data-requiere="Modelos Pragmáticos">🔒 Modelos Emergentes</button>
+      <button class="ramo" data-nombre="Investigación Salud">🔒 Investigación Salud</button>
+      <button class="ramo" data-nombre="TO Intervención IV" data-requiere="TO Intervención III">🔒 TO Intervención IV</button>
+    </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+    <div class="semestre" id="sem5">
+      <div class="semestre-title">Semestre 5</div>
+      <button class="ramo" data-nombre="Farmacología" data-requiere="Fisiología Sistemas">🔒 Farmacología</button>
+      <button class="ramo" data-nombre="Fisiopatología" data-requiere="Farmacología">🔒 Fisiopatología</button>
+      <button class="ramo" data-nombre="Alteraciones Neuro" data-requiere="Fisiopatología">🔒 Alteraciones Neuro</button>
+      <button class="ramo" data-nombre="Investigación TO I" data-requiere="Modelos Emergentes,Investigación Salud">🔒 Investigación TO I</button>
+      <button class="ramo" data-nombre="TO Intervención V" data-requiere="TO Intervención IV">🔒 TO Intervención V</button>
+    </div>
+
+    <div class="semestre" id="sem6">
+      <div class="semestre-title">Semestre 6</div>
+      <button class="ramo" data-nombre="Investigación TO II" data-requiere="Investigación TO I">🔒 Investigación TO II</button>
+      <button class="ramo" data-nombre="TO Intervención VI" data-requiere="TO Intervención V">🔒 TO Intervención VI</button>
+      <button class="ramo" data-nombre="Práctica Integrada I" data-requiere="TO Intervención I,TO Intervención II">🔒 Práctica Integrada I</button>
+      <button class="ramo" data-nombre="Gestión I">🔒 Gestión I</button>
+      <button class="ramo" data-nombre="Gestión II" data-requiere="Gestión I"
