@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f3e5f5; /* Morado claro */
+  background-color: #f3e5f5; /* morado claro */
   color: #333;
   overflow-x: auto;
 }
@@ -64,5 +64,3 @@ h1 {
 .icono {
   font-size: 16px;
 }
-
-
