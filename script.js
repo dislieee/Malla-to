@@ -1,155 +1,126 @@
-const semestres = [
-  {
-    nombre: "I Semestre",
-    ramos: [
-      { id: "fund_psico", nombre: "Fund. Psicológicos y Socioculturales", requiere: [] },
-      { id: "biologia", nombre: "Biología Celular y Genética", requiere: [] },
-      { id: "quimica", nombre: "Química General y Orgánica", requiere: [] },
-      { id: "intro_to", nombre: "Introducción a la TO", requiere: [] },
-      { id: "fg1", nombre: "Electivo Formación General", requiere: [] },
-      { id: "matematicas", nombre: "Matemáticas", requiere: [] },
-      { id: "to_estrat_i", nombre: "TO y Estrategias de Intervención I", requiere: [] }
-    ]
-  },
-  {
-    nombre: "II Semestre",
-    ramos: [
-      { id: "psico_gen", nombre: "Psicología General y Evolutiva", requiere: ["fund_psico"] },
-      { id: "bioquimica", nombre: "Bioquímica", requiere: ["biologia", "quimica"] },
-      { id: "morfologia_i", nombre: "Morfología I", requiere: ["biologia"] },
-      { id: "epistemologia", nombre: "Fund. y Epistemología de la Ocupación", requiere: ["intro_to"] },
-      { id: "to_estrat_ii", nombre: "TO y Estrategias de Intervención II", requiere: ["to_estrat_i"] }
-    ]
-  },
-  {
-    nombre: "III Semestre",
-    ramos: [
-      { id: "psico_social", nombre: "Psicología Social y del Trabajo", requiere: ["psico_gen"] },
-      { id: "antropologia", nombre: "Antropología", requiere: ["psico_gen"] },
-      { id: "morfologia_ii", nombre: "Morfología II", requiere: ["morfologia_i"] },
-      { id: "fisiologia", nombre: "Fisiología General", requiere: ["biologia"] },
-      { id: "modelos_prag", nombre: "Modelos Pragmáticos de la Ocupación", requiere: ["epistemologia"] },
-      { id: "to_estrat_iii", nombre: "TO y Estrategias de Intervención III", requiere: ["to_estrat_ii"] }
-    ]
-  },
-  {
-    nombre: "IV Semestre",
-    ramos: [
-      { id: "salud_mental", nombre: "Salud Mental y Psicoeducación", requiere: ["antropologia"] },
-      { id: "fisiologia_sis", nombre: "Fisiología de Sistemas", requiere: ["fisiologia"] },
-      { id: "modelos_emerg", nombre: "Modelos Emergentes Ocupación", requiere: ["modelos_prag"] },
-      { id: "inv_salud", nombre: "Investigación en Ciencias de la Salud", requiere: [] },
-      { id: "to_estrat_iv", nombre: "TO y Estrategias de Intervención IV", requiere: ["to_estrat_iii"] }
-    ]
-  },
-  {
-    nombre: "V Semestre",
-    ramos: [
-      { id: "farmacologia", nombre: "Farmacología", requiere: ["fisiologia_sis"] },
-      { id: "fisiopatologia", nombre: "Fisiopatología", requiere: ["farmacologia"] },
-      { id: "alteraciones", nombre: "Alteraciones Neuromusculoesqueléticas", requiere: ["fisiopatologia"] },
-      { id: "inv_to_i", nombre: "Investigación en TO I", requiere: ["inv_salud", "modelos_emerg"] },
-      { id: "to_estrat_v", nombre: "TO y Estrategias de Intervención V", requiere: ["to_estrat_iv"] }
-    ]
-  },
-  {
-    nombre: "VI Semestre",
-    ramos: [
-      { id: "inv_to_ii", nombre: "Investigación en TO II", requiere: ["inv_to_i"] },
-      { id: "to_estrat_vi", nombre: "TO y Estrategias de Intervención VI", requiere: ["to_estrat_v"] },
-      { id: "practica_i", nombre: "Práctica Integrada I", requiere: ["to_estrat_i", "to_estrat_ii"] },
-      { id: "gestion_i", nombre: "Gestión I", requiere: [] },
-      { id: "gestion_ii", nombre: "Gestión en Salud II", requiere: ["gestion_i"] },
-      { id: "gestion_aplicada", nombre: "Gestión Aplicada a TO", requiere: ["gestion_ii"] }
-    ]
-  },
-  {
-    nombre: "VII Semestre",
-    ramos: [
-      { id: "inv_to_iii", nombre: "Investigación en TO III", requiere: ["inv_to_ii"] },
-      { id: "to_estrat_vii", nombre: "TO y Estrategias de Intervención VII", requiere: ["to_estrat_vi"] },
-      { id: "practica_ii", nombre: "Práctica Integrada II", requiere: ["practica_i"] },
-      { id: "ocupacion_redes", nombre: "Ocupación y Redes", requiere: [] },
-      { id: "ocupacion_cultura", nombre: "Ocupación y Cultura", requiere: [] },
-      { id: "historias_perfiles", nombre: "Historias y Perfiles Ocupacionales", requiere: [] }
-    ]
-  },
-  {
-    nombre: "VIII Semestre",
-    ramos: [
-      { id: "inv_to_iv", nombre: "Investigación en TO IV", requiere: ["inv_to_iii"] },
-      { id: "to_estrat_viii", nombre: "TO y Estrategias de Intervención VIII", requiere: ["to_estrat_vii"] },
-      { id: "practica_iii", nombre: "Práctica Integrada III", requiere: ["practica_ii"] },
-      { id: "analisis_avanzados", nombre: "Análisis Ocupacionales Avanzados", requiere: [] },
-      { id: "fg2", nombre: "FG: GRIPS", requiere: [] },
-      { id: "practica_pro_i", nombre: "Práctica Profesional I", requiere: ["practica_iii"] }
-    ]
-  },
-  {
-    nombre: "IX Semestre",
-    ramos: [
-      { id: "practica_pro_ii", nombre: "Práctica Profesional II", requiere: ["practica_pro_i"] }
-    ]
-  },
-  {
-    nombre: "X Semestre",
-    ramos: [
-      { id: "titulo", nombre: "Proyecto de Titulación", requiere: ["practica_pro_ii"] }
-    ]
-  }
+const malla = [
+  { nombre: "I Semestre", ramos: [
+    { id: "psicologia_general", nombre: "Psicología General y Evolutiva", desbloquea: ["antropologia", "psicologia_social"] },
+    { id: "biologia_celular", nombre: "Biología Celular y Genética", desbloquea: ["bioquimica", "morfologia1", "fisiologia_general"] },
+    { id: "quimica", nombre: "Química General y Orgánica", desbloquea: ["bioquimica"] },
+    { id: "intro_to", nombre: "Introducción a la Terapia Ocupacional", desbloquea: ["fundamentos_to"] },
+    { id: "electivo_fg", nombre: "Electivo Formación General" },
+    { id: "matematicas", nombre: "Matemáticas" },
+    { id: "to_estrategias1", nombre: "TO Intervención I", desbloquea: ["to_estrategias2", "practica1"] },
+  ]},
+  { nombre: "II Semestre", ramos: [
+    { id: "bioquimica", nombre: "Bioquímica", requisitos: ["quimica", "biologia_celular"], desbloquea: ["farmacologia"] },
+    { id: "morfologia1", nombre: "Morfología I", requisitos: ["biologia_celular"], desbloquea: ["morfologia2"] },
+    { id: "fundamentos_to", nombre: "Fundamentos y Epistemología", requisitos: ["intro_to"], desbloquea: ["modelos_pragmaticos"] },
+    { id: "to_estrategias2", nombre: "TO Intervención II", requisitos: ["to_estrategias1"], desbloquea: ["to_estrategias3"] },
+  ]},
+  { nombre: "III Semestre", ramos: [
+    { id: "psicologia_social", nombre: "Psicología Social y del Trabajo", requisitos: ["psicologia_general"] },
+    { id: "antropologia", nombre: "Antropología", requisitos: ["psicologia_general"], desbloquea: ["salud_mental"] },
+    { id: "morfologia2", nombre: "Morfología II", requisitos: ["morfologia1"] },
+    { id: "fisiologia_general", nombre: "Fisiología General", requisitos: ["biologia_celular"], desbloquea: ["fisiologia_sistemas"] },
+    { id: "modelos_pragmaticos", nombre: "Modelos Pragmáticos", requisitos: ["fundamentos_to"], desbloquea: ["modelos_emergentes"] },
+    { id: "to_estrategias3", nombre: "TO Intervención III", requisitos: ["to_estrategias2"], desbloquea: ["to_estrategias4"] },
+  ]},
+  { nombre: "IV Semestre", ramos: [
+    { id: "salud_mental", nombre: "Salud Mental y Psicoeducación", requisitos: ["antropologia"] },
+    { id: "fisiologia_sistemas", nombre: "Fisiología de Sistemas", requisitos: ["fisiologia_general"], desbloquea: ["farmacologia"] },
+    { id: "modelos_emergentes", nombre: "Modelos Emergentes", requisitos: ["modelos_pragmaticos"], desbloquea: ["investigacion1"] },
+    { id: "investigacion_salud", nombre: "Investigación en Ciencias de la Salud", desbloquea: ["investigacion1"] },
+    { id: "to_estrategias4", nombre: "TO Intervención IV", requisitos: ["to_estrategias3"], desbloquea: ["to_estrategias5"] },
+  ]},
+  { nombre: "V Semestre", ramos: [
+    { id: "farmacologia", nombre: "Farmacología", requisitos: ["fisiologia_sistemas"], desbloquea: ["fisiopatologia"] },
+    { id: "fisiopatologia", nombre: "Fisiopatología", requisitos: ["farmacologia"], desbloquea: ["alteraciones_neuro"] },
+    { id: "alteraciones_neuro", nombre: "Alteraciones Neuromusculoesqueléticas", requisitos: ["fisiopatologia"] },
+    { id: "investigacion1", nombre: "Investigación I", requisitos: ["investigacion_salud", "modelos_emergentes"], desbloquea: ["investigacion2"] },
+    { id: "to_estrategias5", nombre: "TO Intervención V", requisitos: ["to_estrategias4"], desbloquea: ["to_estrategias6"] },
+  ]},
+  { nombre: "VI Semestre", ramos: [
+    { id: "investigacion2", nombre: "Investigación II", requisitos: ["investigacion1"], desbloquea: ["investigacion3"] },
+    { id: "to_estrategias6", nombre: "TO Intervención VI", requisitos: ["to_estrategias5"], desbloquea: ["to_estrategias7"] },
+    { id: "practica1", nombre: "Práctica Integrada I", requisitos: ["to_estrategias1", "to_estrategias2"] },
+    { id: "gestion1", nombre: "Gestión I", desbloquea: ["gestion2"] },
+    { id: "gestion2", nombre: "Gestión en Salud II", requisitos: ["gestion1"], desbloquea: ["gestion_aplicada"] },
+    { id: "gestion_aplicada", nombre: "Gestión Aplicada TO", requisitos: ["gestion2"] },
+  ]},
+  { nombre: "VII Semestre", ramos: [
+    { id: "investigacion3", nombre: "Investigación III", requisitos: ["investigacion2"], desbloquea: ["investigacion4"] },
+    { id: "to_estrategias7", nombre: "TO Intervención VII", requisitos: ["to_estrategias6"], desbloquea: ["to_estrategias8"] },
+    { id: "practica2", nombre: "Práctica Integrada II", requisitos: ["practica1"] },
+    { id: "ocupacion_redes", nombre: "Ocupación y Redes" },
+    { id: "ocupacion_cultura", nombre: "Ocupación y Cultura" },
+    { id: "historias_ocupacionales", nombre: "Historias y Perfiles Ocupacionales" },
+  ]},
+  { nombre: "VIII Semestre", ramos: [
+    { id: "investigacion4", nombre: "Investigación IV", requisitos: ["investigacion3"] },
+    { id: "to_estrategias8", nombre: "TO Intervención VIII", requisitos: ["to_estrategias7"] },
+    { id: "practica3", nombre: "Práctica Integrada III", requisitos: ["practica2"], desbloquea: ["practica_pro1"] },
+    { id: "analisis_ocupacionales", nombre: "Análisis Ocupacionales Avanzados" },
+    { id: "fg_grips", nombre: "FG: GRIPS" },
+    { id: "practica_pro1", nombre: "Práctica Profesional I", requisitos: ["practica3"], desbloquea: ["practica_pro2"] },
+  ]},
+  { nombre: "IX Semestre", ramos: [
+    { id: "practica_pro2", nombre: "Práctica Profesional II", requisitos: ["practica_pro1"], desbloquea: ["practica_pro3"] },
+    { id: "practica_pro3", nombre: "Práctica Profesional III", requisitos: ["practica_pro2"], desbloquea: ["proyecto_titulacion"] },
+  ]},
+  { nombre: "X Semestre", ramos: [
+    { id: "proyecto_titulacion", nombre: "Proyecto de Titulación", requisitos: ["practica_pro3"] }
+  ]}
 ];
 
-let aprobados = new Set(JSON.parse(localStorage.getItem("aprobados")) || []);
+const aprobados = JSON.parse(localStorage.getItem("aprobados") || "[]");
 
-function guardar() {
-  localStorage.setItem("aprobados", JSON.stringify(Array.from(aprobados)));
+function estaDesbloqueado(ramo) {
+  if (!ramo.requisitos || ramo.requisitos.length === 0) return true;
+  return ramo.requisitos.every(r => aprobados.includes(r));
 }
 
-function puedeAprobar(ramo) {
-  if (!ramo.requiere || ramo.requiere.length === 0) return true;
-  return ramo.requiere.every(req => aprobados.has(req));
-}
+function renderMalla() {
+  const contenedor = document.getElementById("malla");
+  contenedor.innerHTML = "";
 
-const mallaDiv = document.getElementById("malla");
+  malla.forEach(sem => {
+    const semestreDiv = document.createElement("div");
+    semestreDiv.className = "semestre";
+    const titulo = document.createElement("h2");
+    titulo.textContent = sem.nombre;
+    semestreDiv.appendChild(titulo);
 
-function renderizarMalla() {
-  mallaDiv.innerHTML = "";
-  semestres.forEach(semestre => {
-    const divSemestre = document.createElement("div");
-    divSemestre.className = "semestre";
-
-    const titulo = document.createElement("div");
-    titulo.className = "semestre-title";
-    titulo.textContent = semestre.nombre;
-    divSemestre.appendChild(titulo);
-
-    semestre.ramos.forEach(ramo => {
+    sem.ramos.forEach(ramo => {
       const boton = document.createElement("button");
       boton.className = "ramo";
       boton.textContent = ramo.nombre;
-      if (aprobados.has(ramo.id)) {
-        boton.classList.add("approved");
-      } else if (!puedeAprobar(ramo)) {
-        boton.classList.add("locked");
+
+      const icono = document.createElement("span");
+      icono.className = "icono";
+
+      if (aprobados.includes(ramo.id)) {
+        icono.textContent = " ✅";
+      } else if (!estaDesbloqueado(ramo)) {
+        icono.textContent = " 🔒";
         boton.disabled = true;
       }
 
-      boton.onclick = () => {
-        if (aprobados.has(ramo.id)) {
-          aprobados.delete(ramo.id);
-        } else if (puedeAprobar(ramo)) {
-          aprobados.add(ramo.id);
+      boton.appendChild(icono);
+      boton.addEventListener("click", () => {
+        if (aprobados.includes(ramo.id)) {
+          const index = aprobados.indexOf(ramo.id);
+          aprobados.splice(index, 1);
+        } else {
+          aprobados.push(ramo.id);
         }
-        guardar();
-        renderizarMalla();
-      };
+        localStorage.setItem("aprobados", JSON.stringify(aprobados));
+        renderMalla();
+      });
 
-      divSemestre.appendChild(boton);
+      semestreDiv.appendChild(boton);
     });
 
-    mallaDiv.appendChild(divSemestre);
+    contenedor.appendChild(semestreDiv);
   });
 }
 
-renderizarMalla();
+renderMalla();
+
 
