@@ -1,77 +1,66 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #d9c2f5; /* morado claro */
-    color: #333;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f3e5f5; /* morado claro */
+  color: #333;
+  overflow-x: auto;
 }
 
 h1 {
-    text-align: center;
-    margin: 20px 0;
+  text-align: center;
+  padding: 20px;
+  color: #4a148c;
 }
 
-.semestres-container {
-    display: flex;
-    overflow-x: auto;
-    padding: 10px;
-    gap: 15px;
-    scroll-behavior: smooth;
-    user-select: none;
+#malla {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  overflow-x: auto;
 }
 
 .semestre {
-    min-width: 300px;
-    background-color: #e6ddff; /* un poco más claro que el fondo */
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 6px rgba(0,0,0,0.15);
-    flex-shrink: 0;
+  min-width: 250px;
+  background-color: #ede7f6;
+  border: 1px solid #b39ddb;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  flex-shrink: 0;
 }
 
 .semestre h2 {
-    text-align: center;
-    margin-bottom: 12px;
-    color: #5a2a8a;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #6a1b9a;
+  text-align: center;
 }
 
 .ramo {
-    width: 100%;
-    text-align: left;
-    padding: 10px;
-    margin-bottom: 8px;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #cdbaff; /* color base de los ramos */
-    transition: background-color 0.3s ease;
-    user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #d1c4e9;
+  padding: 8px 12px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #4a148c;
+  transition: background-color 0.3s;
 }
 
 .ramo:hover {
-    background-color: #b29bff;
+  background-color: #b39ddb;
 }
 
-.ramo.approved {
-    background-color: #c8f7c5; /* verde claro */
-    color: #2e7d32;
-    font-weight: bold;
+.ramo:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
 }
 
-.ramo.locked {
-    background-color: #f0e6ff; /* lavanda más pálido */
-    color: #999;
-    cursor: default;
-}
-
-.ramo.locked:hover {
-    background-color: #f0e6ff;
-}
-
-.icon {
-    font-size: 18px;
-    margin-left: 8px;
+.icono {
+  font-size: 16px;
 }
