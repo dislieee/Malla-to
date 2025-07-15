@@ -2,13 +2,48 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Malla Curricular Interactiva</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Malla Curricular Terapia Ocupacional</title>
   <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
-  <h1>Malla Curricular Interactiva</h1>
-  <div id="malla"></div>
+  <h1>Malla Curricular de Terapia Ocupacional</h1>
+  <div id="malla">
+    <div class="semestre" id="semestre1">
+      <div class="semestre-title">Semestre 1</div>
+      <div class="ramo" data-nombre="Fundamentos Psicológicos y Socioculturales de la Intervención">🔒 Fundamentos Psicológicos</div>
+      <div class="ramo" data-nombre="Biología Celular y Genética">🔒 Biología Celular y Genética</div>
+      <div class="ramo" data-nombre="Química General y Orgánica">🔒 Química General y Orgánica</div>
+      <div class="ramo" data-nombre="Introducción a la Terapia Ocupacional">🔒 Introducción a la TO</div>
+      <div class="ramo" data-nombre="Electivo Formación General">🔒 Electivo FG</div>
+      <div class="ramo" data-nombre="Matemáticas">🔒 Matemáticas</div>
+      <div class="ramo" data-nombre="Terapia Ocupacional y Estrategias de Intervención I">🔒 TO Intervención I</div>
+    </div>
+
+    <div class="semestre" id="semestre2">
+      <div class="semestre-title">Semestre 2</div>
+      <div class="ramo" data-nombre="Psicología General y Evolutiva" data-requiere="Fundamentos Psicológicos y Socioculturales de la Intervención">🔒 Psicología General</div>
+      <div class="ramo" data-nombre="Bioquímica" data-requiere="Química General y Orgánica">🔒 Bioquímica</div>
+      <div class="ramo" data-nombre="Morfología I">🔒 Morfología I</div>
+      <div class="ramo" data-nombre="Fundamentos y Epistemología de la Ciencia de la Ocupación">🔒 Fund. y Epistemología</div>
+      <div class="ramo" data-nombre="Terapia Ocupacional y Estrategias de Intervención II" data-requiere="Terapia Ocupacional y Estrategias de Intervención I">🔒 TO Intervención II</div>
+    </div>
+
+    <!-- Repite esta estructura para los 10 semestres -->
+
+    <div class="semestre" id="semestre3">
+      <div class="semestre-title">Semestre 3</div>
+      <div class="ramo" data-nombre="Psicología Social y del Trabajo" data-requiere="Psicología General y Evolutiva">🔒 Psicología Social</div>
+      <div class="ramo" data-nombre="Antropología" data-requiere="Psicología General y Evolutiva">🔒 Antropología</div>
+      <div class="ramo" data-nombre="Morfología II" data-requiere="Morfología I">🔒 Morfología II</div>
+      <div class="ramo" data-nombre="Fisiología General" data-requiere="Biología Celular y Genética">🔒 Fisiología General</div>
+      <div class="ramo" data-nombre="Modelos Pragmáticos del Estudio de la Ocupación" data-requiere="Fundamentos y Epistemología de la Ciencia de la Ocupación">🔒 Modelos Pragmáticos</div>
+      <div class="ramo" data-nombre="Terapia Ocupacional y Estrategias de Intervención III" data-requiere="Terapia Ocupacional y Estrategias de Intervención II">🔒 TO Intervención III</div>
+    </div>
+
+    <!-- Semestres 4 a 10 los puedes copiar siguiendo el mismo formato -->
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
