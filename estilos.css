@@ -1,66 +1,76 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: sans-serif;
   background-color: #f3e5f5; /* morado claro */
-  color: #333;
   overflow-x: auto;
+  padding: 20px;
 }
 
 h1 {
   text-align: center;
-  padding: 20px;
   color: #4a148c;
 }
 
 #malla {
   display: flex;
+  flex-direction: row;
   gap: 20px;
-  padding: 20px;
-  overflow-x: auto;
+  width: max-content;
+  padding-bottom: 20px;
 }
 
 .semestre {
-  min-width: 250px;
-  background-color: #ede7f6;
-  border: 1px solid #b39ddb;
+  background: white;
+  padding: 10px;
   border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  flex-shrink: 0;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 10px #ccc;
 }
 
-.semestre h2 {
-  font-size: 18px;
+.semestre-title {
+  font-weight: bold;
   margin-bottom: 10px;
-  color: #6a1b9a;
   text-align: center;
 }
 
 .ramo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #d1c4e9;
-  padding: 8px 12px;
-  margin: 5px 0;
+  background-color: #e1bee7;
   border: none;
-  border-radius: 6px;
+  padding: 8px 12px 8px 28px;
+  margin: 5px 0;
+  border-radius: 8px;
+  width: 100%;
+  text-align: left;
   cursor: pointer;
   font-size: 14px;
-  color: #4a148c;
-  transition: background-color 0.3s;
+  position: relative;
 }
 
-.ramo:hover {
-  background-color: #b39ddb;
-}
-
-.ramo:disabled {
-  background-color: #ccc;
-  color: #888;
+.ramo.locked {
+  background-color: #d1c4e9;
+  color: #999;
   cursor: not-allowed;
 }
 
-.icono {
-  font-size: 16px;
+.ramo.approved {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+}
+
+.ramo::before {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  font-size: 14px;
+}
+
+.ramo.approved::before {
+  content: "✅";
+}
+
+.ramo.locked::before {
+  content: "🔒";
 }
